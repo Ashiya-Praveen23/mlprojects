@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Exam Performance Indicator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      margin: 30px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+      color: #444;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .result-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #eef6ff;
+      border: 1px solid #bcdffb;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Student Exam Performance Prediction</h1>
+
+    <form action="/predictdata" method="POST">
+      <!-- Gender -->
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="" disabled selected>Select your Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
+      <!-- Race or Ethnicity -->
+      <label for="ethnicity">Race or Ethnicity</label>
+      <select id="ethnicity" name="ethnicity" required>
+        <option value="" disabled selected>Select Ethnicity</option>
+        <option value="group A">Group A</option>
+        <option value="group B">Group B</option>
+        <option value="group C">Group C</option>
+        <option value="group D">Group D</option>
+        <option value="group E">Group E</option>
+      </select>
+
+      <!-- Parental Education -->
+      <label for="parentEdu">Parental Level of Education</label>
+      <select id="parentEdu" name="parentEdu" required>
+        <option value="" disabled selected>Select Parent Education</option>
+        <option value="high school">High School</option>
+        <option value="some high school">Some High School</option>
+        <option value="associate's degree">Associate's Degree</option>
+        <option value="bachelor's degree">Bachelor's Degree</option>
+        <option value="master's degree">Master's Degree</option>
+        <option value="some college">Some College</option>
+      </select>
+
+      <!-- Lunch -->
+      <label for="lunch">Lunch Type</label>
+      <select id="lunch" name="lunch" required>
+        <option value="" disabled selected>Select Lunch Type</option>
+        <option value="standard">Standard</option>
+        <option value="free/reduced">Free/Reduced</option>
+      </select>
+
+      <!-- Test preparation -->
+      <label for="testPrep">Test Preparation Course</label>
+      <select id="testPrep" name="testPrep" required>
+        <option value="" disabled selected>Select Test Course</option>
+        <option value="none">None</option>
+        <option value="completed">Completed</option>
+      </select>
+
+      <!-- Scores -->
+      <label for="writing">Writing Score out of 100</label>
+      <input type="number" id="writing" name="writing" placeholder="Enter your Writing Score" min="0" max="100" required />
+
+      <label for="reading">Reading Score out of 100</label>
+      <input type="number" id="reading" name="reading" placeholder="Enter your Reading Score" min="0" max="100" required />
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <!-- Prediction result -->
+    {% if results is defined %}
+    <div class="result-box">
+      The prediction is {{results}}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
+
+
